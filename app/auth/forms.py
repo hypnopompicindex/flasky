@@ -43,17 +43,17 @@ class ChangePasswordForm(Form):
 
 
 class PasswordResetRequestForm(Form):
-    email = StringField('Email', validators=[Required(), Length(1, 64),
+    email = StringField('Email', validators=[DataRequired(), Length(1, 64),
                                              Email()])
     submit = SubmitField('Reset Password')
 
 
 class PasswordResetForm(Form):
-    email = StringField('Email', validators=[Required(), Length(1, 64),
+    email = StringField('Email', validators=[DataRequired(), Length(1, 64),
                                              Email()])
     password = PasswordField('New Password', validators=[
-        Required(), EqualTo('password2', message='Passwords must match')])
-    password2 = PasswordField('Confirm password', validators=[Required()])
+        DataRequired(), EqualTo('password2', message='Passwords must match')])
+    password2 = PasswordField('Confirm password', validators=[DataRequired()])
     submit = SubmitField('Reset Password')
 
     def validate_email(self, field):
@@ -62,9 +62,9 @@ class PasswordResetForm(Form):
 
 
 class ChangeEmailForm(Form):
-    email = StringField('New Email', validators=[Required(), Length(1, 64),
+    email = StringField('New Email', validators=[DataRequired(), Length(1, 64),
                                                  Email()])
-    password = PasswordField('Password', validators=[Required()])
+    password = PasswordField('Password', validators=[DataRequired()])
     submit = SubmitField('Update Email Address')
 
     def validate_email(self, field):
